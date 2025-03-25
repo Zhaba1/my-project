@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Приветствие</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="dark-theme">
+    <div class="center-container">
+        <h1>Добро пожаловать в игру "Города"!</h1>
+        <p>Выберите действие:</p>
+
+        <!-- Кнопки регистрации и входа -->
+        <a href="{{ url_for('register') }}"><button class="btn">Регистрация</button></a>
+        <a href="{{ url_for('login') }}"><button class="btn">Вход</button></a>
+    </div>
+</body>
+</html>

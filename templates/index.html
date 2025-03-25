@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Игра в города</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="game-page">
+    <div class="game-container">
+        <h1>Города Онлайн</h1>
+        <p>Добро пожаловать в игру "Города"!</p>
+        <p>Введите название города, чтобы начать:</p>
+
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+
+        <!-- Форма для ввода города -->
+        <form method="POST">
+            <input type="text" name="city" placeholder="Введите город" required>
+            <button type="submit">Отправить</button>
+        </form>
+
+        <!-- Кнопка для сброса игры -->
+        <form action="/reset" method="GET">
+            <button type="submit">Начать заново</button>
+        </form>
+
+        <!-- Отображение использованных городов -->
+        {% if used_cities %}
+            <h3>Использованные города:</h3>
+            <div class="scrollable-list">
+                <ul>
+                    {% for city in used_cities %}
+                        <li>{{ city.capitalize() }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
