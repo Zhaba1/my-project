@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+
+    <!-- Подключение Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css ">
+</head>
+<body class="profile-page">
+    <!-- Кнопки "Выход" и "Назад к игре" в правом верхнем углу -->
+    <div class="top-nav">
+        <a href="{{ url_for('game') }}"><button type="button" class="btn-back">Назад к игре</button></a>
+        <a href="{{ url_for('logout') }}"><button type="button" class="btn-back">Выйти из аккаунта</button></a>
+    </div>
+
+    <!-- Основной контейнер профиля -->
+    <div class="profile-container">
+        <!-- Блок с информацией о текущем пользователе -->
+        <div class="profile-info centered">
+            <h2>Информация о пользователе</h2>
+
+            <p><i class="fas fa-user"></i> <strong>Имя пользователя:</strong> <span>{{ user.username }}</span></p>
+
+            <p><i class="fas fa-gamepad"></i> <strong>Сыграно игр:</strong> <span>{{ user.games_played }}</span></p>
+
+            <p><i class="fas fa-trophy"></i> <strong>Лучшая цепочка:</strong>
+                <span>
+                    {{ user.longest_chain }}
+                    {% if user.longest_chain == 1 %}
+                        город
+                    {% elif user.longest_chain in [2, 3, 4] %}
+                        города
+                    {% else %}
+                        городов
+                    {% endif %}
+                </span>
+            </p>
+
+            <p><i class="fas fa-crown"></i> <strong>Победы:</strong> <span>{{ user.wins }}</span></p>
+
+            <!-- Кнопка для показа таблицы лидеров -->
+            <button id="show-leaderboard" onclick="toggleLeaderboard()">Показать таблицу лидеров</button>
+        </div>
+
+        <!-- Блок с лидерами (скрыт по умолчанию) -->
+        <div id="leaderboard" style="display: none;">
+            <h2>Лидеры</h2>
+
+            <!-- Таблица лидеров -->
+            <div class="leaderboard-category">
+                <h3>Сыграно игр</h3>
+                <ul>
+                    {% for leader in top_players_by_games %}
+                        <li>
+                            <span class="leader-name">{{ leader.username }}</span>
+                            <span class="leader-value">{{ leader.games_played }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="leaderboard-category">
+                <h3>Лучшая цепочка</h3>
+                <ul>
+                    {% for leader in top_players_by_longest_chain %}
+                        <li>
+                            <span class="leader-name">{{ leader.username }}</span>
+                            <span class="leader-value">{{ leader.longest_chain }}
+                                {% if leader.longest_chain == 1 %}
+                                    город
+                                {% elif leader.longest_chain in [2, 3, 4] %}
+                                    города
+                                {% else %}
+                                    городов
+                                {% endif %}
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="leaderboard-category">
+                <h3>Победы</h3>
+                <ul>
+                    {% for leader in top_players_by_wins %}
+                        <li>
+                            <span class="leader-name">{{ leader.username }}</span>
+                            <span class="leader-value">{{ leader.wins }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипт для показа/скрытия таблицы лидеров -->
+    <script>
+        function toggleLeaderboard() {
+            const leaderboard = document.getElementById('leaderboard');
+            if (leaderboard.style.display === 'none') {
+                leaderboard.style.display = 'block';
+                document.getElementById('show-leaderboard').innerText = 'Скрыть таблицу лидеров';
+            } else {
+                leaderboard.style.display = 'none';
+                document.getElementById('show-leaderboard').innerText = 'Показать таблицу лидеров';
+            }
+        }
+    </script>
+</body>
+</html>

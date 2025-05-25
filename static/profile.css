@@ -1,0 +1,180 @@
+/* static/profile.css */
+
+body.profile-page {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* === Основной контейнер профиля на весь экран (1920x1080) === */
+.profile-container {
+    width: 1920px;
+    height: 1080px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #222; /* Темный фон */
+    color: white;
+    border-radius: 0;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: flex-start; /* Левое выравнивание контента */
+    align-items: flex-start;
+    position: relative; /* Для позиционирования дочерних элементов */
+    overflow-y: auto;
+}
+
+/* === Информация о пользователе === */
+.profile-info {
+    text-align: left;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 100px;
+}
+
+.profile-info h2 {
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    color: #ffffff;
+    text-align: center;
+}
+
+.profile-info p {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #fff;
+    padding: 10px 20px;
+    border-left: 4px solid #007bff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.profile-info p i {
+    min-width: 24px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+.profile-info p strong {
+    min-width: 180px;
+    display: inline-block;
+    color: #ccc;
+}
+
+.profile-info p span {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* === Кнопка для показа/скрытия таблицы лидеров === */
+#show-leaderboard {
+    margin-top: 20px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+#show-leaderboard:hover {
+    background-color: #0056b3;
+}
+
+/* === Блок с таблицей лидеров (по центру правой части экрана) === */
+#leaderboard {
+    position: absolute;
+    top: 50%; /* Центр по вертикали */
+    right: 40px; /* Отступ от правого края */
+    transform: translateY(-50%); /* Точное центрирование */
+    width: 300px;
+    background-color: #222; /* Тот же цвет фона, что и у profile-container */
+    color: white;
+    padding: 20px;
+    font-size: 1rem;
+    z-index: 999;
+}
+
+#leaderboard h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.leaderboard-category {
+    margin-bottom: 30px;
+    overflow-y: auto; /* Добавляем скролл */
+    max-height: 150px; /* Максимальная высота категории */
+}
+
+.leaderboard-category h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #fff;
+    text-align: left;
+}
+
+.leaderboard ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.leaderboard li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.leaderboard .leader-name {
+    font-weight: bold;
+    color: #fff;
+}
+
+.leaderboard .leader-value {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* === Кнопки навигации в правом верхнем углу === */
+.top-nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.top-nav a {
+    text-decoration: none;
+}
+
+.btn-back {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #0056b3;
+}

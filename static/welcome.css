@@ -1,0 +1,10 @@
+/* static/welcome.css */
+
+body {
+    background-color: #121212;
+    color: white;
+}
+
+.center-container {
+    background-color: rgba(255, 255, 255, 0.1);
+}

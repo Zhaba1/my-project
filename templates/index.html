@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Игра в города</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <title>Города Онлайн</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='game.css') }}">
+
+    <style>
+        .top-nav {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .top-nav a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body class="game-page">
+    <!-- Кнопки "Выход" и "Профиль" -->
+    <div class="top-nav">
+        <a href="{{ url_for('logout') }}"><button type="button" class="btn">Выйти</button></a>
+        <a href="{{ url_for('profile') }}"><button type="button" class="btn">Профиль</button></a>
+    </div>
+
+    <!-- Основное игровое поле -->
     <div class="game-container">
         <h1>Города Онлайн</h1>
         <p>Добро пожаловать в игру "Города"!</p>
@@ -21,17 +44,22 @@
         <!-- Форма для ввода города -->
         <form method="POST">
             <input type="text" name="city" placeholder="Введите город" required>
-            <button type="submit">Отправить</button>
+            <button type="submit" class="btn">Отправить</button>
+        </form>
+
+        <!-- Кнопка сдаться -->
+        <form action="/give_up" method="POST">
+            <button type="submit" class="btn">Сдаться</button>
         </form>
 
         <!-- Кнопка для сброса игры -->
         <form action="/reset" method="GET">
-            <button type="submit">Начать заново</button>
+            <button type="submit" class="btn">Начать заново</button>
         </form>
 
         <!-- Отображение использованных городов -->
         {% if used_cities %}
-            <h3>Использованные города:</h3>
+            <h3 style="margin-top: 20px;">Использованные города:</h3>
             <div class="scrollable-list">
                 <ul>
                     {% for city in used_cities %}

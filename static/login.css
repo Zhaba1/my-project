@@ -1,0 +1,20 @@
+/* static/login.css */
+
+body {
+    background-color: #121212;
+    color: white;
+}
+
+.center-container {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+input[type="text"],
+input[type="password"] {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
